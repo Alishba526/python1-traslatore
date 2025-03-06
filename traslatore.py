@@ -7,7 +7,7 @@ st.markdown(
     <style>
     /* Glassmorphism effect for the main container */
     .stApp {
-        background-image: url('https://img.freepik.com/free-vector/gradient-glassmorphism-background_23-2149433261.jpg?ga=GA1.1.690664293.1741270361&semt=ais_hybrid');
+        background-image: url('https://img.freepik.com/free-vector/realistic-glass-effect-background_52683-74487.jpg?ga=GA1.1.690664293.1741270361&semt=ais_hybrid');
         background-size: cover;
         background-position: center;
     }
