@@ -1,3 +1,5 @@
+
+
 import streamlit as st
 from translate import Translator
 
@@ -5,7 +7,6 @@ from translate import Translator
 st.markdown(
     """
     <style>
-    /* Glassmorphism effect for the main container */
     .stApp {
         background-image: url('https://img.freepik.com/free-vector/realistic-glass-effect-background_52683-74487.jpg?ga=GA1.1.690664293.1741270361&semt=ais_hybrid');
         background-size: cover;
@@ -15,7 +16,7 @@ st.markdown(
         background: rgba(21, 14, 14, 0.2);
         backdrop-filter: blur(10px);
         border-radius: 15px;
-        padding: 20px;t
+        padding: 20px;
         margin: 20px 0;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
@@ -66,7 +67,7 @@ st.markdown(
 )
 
 # Main container with glassmorphism effect
-st.markdown('<div class="main-container">', unsafe_allow_html=True)
+# st.markdown('<div class="main-container">', unsafe_allow_html=True)
 
 # Title of the app with an emoji
 st.title("🌍 All-in-One Translator")
@@ -74,9 +75,10 @@ st.title("🌍 All-in-One Translator")
 # Input text area with a placeholder
 text = st.text_area("Enter text to translate:", "Hello, how are you?", height=130)
 
-# Language selection with a colorful header
-st.markdown("### 🎯 Select Target Language")
+# Language selection for source and target languages
+st.markdown("### 🎯 Select Source and Target Languages")
 languages = {
+    "Auto Detect": "auto",
     "English": "en",
     "Spanish": "es",
     "French": "fr",
@@ -100,7 +102,12 @@ languages = {
     "Assamese": "as",
     "Bhojpuri": "bh",
 }
-target_lang = st.selectbox("Choose a language:", list(languages.keys()))
+
+# Source language selection
+source_lang = st.selectbox("Choose source language:", list(languages.keys()))
+
+# Target language selection
+target_lang = st.selectbox("Choose target language:", list(languages.keys()))
 
 # Translate button with a colorful design
 if st.button("🚀 Translate"):
@@ -108,7 +115,8 @@ if st.button("🚀 Translate"):
         st.warning("⚠️ Please enter some text to translate.")
     else:
         try:
-            translator = Translator(to_lang=languages[target_lang])
+            # Initialize the translator with source and target languages
+            translator = Translator(from_lang=languages[source_lang], to_lang=languages[target_lang])
             translation = translator.translate(text)
             st.success("✅ Translation:")
             # Display translated text in a highlighted box
@@ -121,7 +129,7 @@ if st.button("🚀 Translate"):
 
 # Footer with a colorful note
 st.markdown("---")
-st.markdown("Made with ❤️ by Alishba Rehman")
+st.markdown("Made ❤️ by Alishba Rehman")
 
 # Close the main container
 st.markdown('</div>', unsafe_allow_html=True)
